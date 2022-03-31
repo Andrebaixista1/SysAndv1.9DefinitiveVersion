@@ -63,6 +63,16 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_anexo_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-anexo-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_apagar_para_sempre_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-apagar-para-sempre-25", resourceCulture);

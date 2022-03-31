@@ -133,7 +133,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
 
 
-                    cm.CommandText = "select * from DB_Manutencao";
+                    cm.CommandText = "select * from Fix_ManutencaoNew";
                     cm.Connection = cn;
 
                     SqlDataAdapter adp = new SqlDataAdapter(cm); // recebe os dados de uma tabela depois da execução de um Select
@@ -226,7 +226,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
 
 
-                    string sql = "insert into DB_Manutencao(entrada,os,patrimonio,modelo,cor,defeito,reparo,status,obs,saida,laudo,garantia) values(@entrada,@os,@patrimonio,@modelo,@cor,@defeito,@reparo,@status,@obs,@saida,@laudo,@garantia)";
+                    string sql = "insert into Fix_ManutencaoNew(entrada,os,patrimonio,modelo,cor,defeito,reparo,status_tb,obs,saida,laudo,garantia) values(@entrada,@os,@patrimonio,@modelo,@cor,@defeito,@reparo,@status,@obs,@saida,@laudo,@garantia)";
                     SqlCommand cmd = new SqlCommand(sql, cn);
 
 
@@ -265,7 +265,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             try
             {
 
-                cmd.CommandText = "select * from DB_Manutencao";
+                cmd.CommandText = "select * from Fix_ManutencaoNew";
                 cmd.Connection = cn;
 
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -311,7 +311,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 cn.Open();
 
 
-                cmd.CommandText = "select * from DB_Manutencao";
+                cmd.CommandText = "select * from Fix_ManutencaoNew";
                 cmd.Connection = cn;
 
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -460,8 +460,8 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void abrirPlanilhaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPlanilha planDataBase = new frmPlanilha();
-            planDataBase.ShowDialog();
+            frmEmail email = new frmEmail();
+            email.ShowDialog();
 
             
         }
@@ -529,6 +529,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 string cor = cbColor.Text;
                 string defeito = txtDefeito.Text;
                 string reparo = txtReparo.Text;
+                string OS = txtOS.Text;
 
                 // Radio Button
 
@@ -591,7 +592,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 DateTime saida = Convert.ToDateTime(txtSaida.Text.ToString());
 
 
-                string sql = "UPDATE DB_Manutencao set patrimonio=@patrimonio, modelo=@modelo, cor=@cor, defeito=@defeito, reparo=@reparo, status=@status, obs=@obs, saida=@saida, laudo=@laudo, garantia=@garantia WHERE id=@id";
+                string sql = "UPDATE Fix_ManutencaoNew set patrimonio=@patrimonio, OS=@os,modelo=@modelo, cor=@cor, defeito=@defeito, reparo=@reparo, status_tb=@status, obs=@obs, saida=@saida, laudo=@laudo, garantia=@garantia WHERE id=@id";
 
 
                 SqlCommand cmd = new SqlCommand(sql, cn);
@@ -599,6 +600,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
                 cmd.Parameters.Add("@patrimonio", SqlDbType.VarChar).Value = patrimonio;
+                cmd.Parameters.Add("@os", SqlDbType.VarChar).Value = OS;
                 cmd.Parameters.Add("@modelo", SqlDbType.VarChar).Value = modelo;
                 cmd.Parameters.Add("@cor", SqlDbType.VarChar).Value = cor;
                 cmd.Parameters.Add("@defeito", SqlDbType.Text).Value = defeito;
@@ -641,7 +643,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 cn.Open();
                 int id = Convert.ToInt32(txtID.Text);
 
-                string sql = "DELETE FROM DB_Manutencao WHERE id=@id";
+                string sql = "DELETE FROM Fix_ManutencaoNew WHERE id=@id";
 
 
                 SqlCommand cmd = new SqlCommand(sql, cn);
@@ -762,13 +764,14 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
+            cn.Open();
             if (txtBuscar.Text != "")
             {
                 try
                 {
-                    cn.Open();
+                    
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "select * from DB_Manutencao where patrimonio like ('" + txtBuscar.Text + "%') or modelo like ('%" + txtBuscar.Text + "%') or status like ('" + txtBuscar.Text + "%') or os like ('" + txtBuscar.Text + "%')or reparo like ('" + txtBuscar.Text + "%') or cor like ('" + txtBuscar.Text + "%')";
+                    cmd.CommandText = "select * from Fix_ManutencaoNew where patrimonio like ('" + txtBuscar.Text + "%') or modelo like ('%" + txtBuscar.Text + "%') or status_tb like ('" + txtBuscar.Text + "%') or os like ('" + txtBuscar.Text + "%')or reparo like ('" + txtBuscar.Text + "%') or cor like ('" + txtBuscar.Text + "%')";
                     cmd.Connection = cn;
 
                     SqlDataAdapter adp = new SqlDataAdapter(cmd); // recebe os dados de uma tabela depois da execução de um Select
@@ -778,7 +781,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                     adp.Fill(dt); //preenchendo o DataTable
 
                     dgvTabela.DataSource = dt; //Tabela que será preenchida
-                    cn.Close();
+                    
                 }
                 catch (Exception ex)
                 {
@@ -788,9 +791,9 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             else
             {
                 //dgvPesq.DataSource = null;
-                cn.Open();
+                /*cn.Open();*/
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "select * from DB_Manutencao";
+                cmd.CommandText = "select * from Fix_ManutencaoNew";
                 cmd.Connection = cn;
 
                 SqlDataAdapter adp = new SqlDataAdapter(cmd); // recebe os dados de uma tabela depois da execução de um Select
@@ -800,13 +803,19 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 adp.Fill(dt); //preenchendo o DataTable
 
                 dgvTabela.DataSource = dt; //Tabela que será preenchida
-                cn.Close();
+                /*cn.Close();*/
             }
+            cn.Close();
         }
 
         private void dgvTabela_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

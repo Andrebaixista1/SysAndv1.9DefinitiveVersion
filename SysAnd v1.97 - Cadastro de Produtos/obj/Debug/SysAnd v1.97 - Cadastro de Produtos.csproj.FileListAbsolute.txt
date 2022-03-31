@@ -10,4 +10,14 @@ C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\Sys
 C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd v1.97 - Cadastro de Produtos.exe
 C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd v1.97 - Cadastro de Produtos.pdb
 C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd v1.97 - Cadastro de Produtos.csproj.ResolveComReference.cache
-C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd_v1._97___Cadastro_de_Produtos.frmPlanilha.resources
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\ClosedXML.dll
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\ExcelNumberFormat.dll
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\System.IO.Packaging.dll
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\ClosedXML.pdb
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\ClosedXML.xml
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\ExcelNumberFormat.xml
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\System.IO.Packaging.xml
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd v1.97 - Cadastro de Produtos.csproj.CopyComplete
+C:\Users\Administrador\Documents\SistemaFixMobile v1.3\SistemaFixMobile v1.2\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd_v1._97___Cadastro_de_Produtos.frmEmail.resources

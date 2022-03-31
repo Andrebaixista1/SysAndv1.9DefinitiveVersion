@@ -101,8 +101,8 @@
             // abrirPlanilhaToolStripMenuItem
             // 
             this.abrirPlanilhaToolStripMenuItem.Name = "abrirPlanilhaToolStripMenuItem";
-            this.abrirPlanilhaToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.abrirPlanilhaToolStripMenuItem.Text = "Banco de Dados (SQL)";
+            this.abrirPlanilhaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abrirPlanilhaToolStripMenuItem.Text = "Enviar email";
             this.abrirPlanilhaToolStripMenuItem.Click += new System.EventHandler(this.abrirPlanilhaToolStripMenuItem_Click);
             // 
             // label1
