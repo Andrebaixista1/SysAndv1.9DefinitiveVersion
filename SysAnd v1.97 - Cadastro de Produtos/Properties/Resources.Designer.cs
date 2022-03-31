@@ -63,6 +63,16 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap assEmail {
+            get {
+                object obj = ResourceManager.GetObject("assEmail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_anexo_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-anexo-30", resourceCulture);

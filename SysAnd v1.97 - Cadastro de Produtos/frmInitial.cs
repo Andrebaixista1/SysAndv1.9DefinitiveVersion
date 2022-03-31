@@ -191,6 +191,10 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                     {
                         status = rbRIniciado.Text;
                     }
+                    else if (rbSucata.Checked)
+                    {
+                        status = rbSucata.Text;
+                    }
                     else
                     {
                         status = rbConcluido.Text;
@@ -289,17 +293,16 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 dgvTabela.Columns[11].HeaderText = "Laudo";
                 dgvTabela.Columns[12].HeaderText = "Garantia";
 
-
-
-
+                
                
             }
 
             catch (Exception ex)
             {
                 MessageBox.Show("Problema no banco de dados!", "Atenção !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cn.Close();
+                
             }
+            
 
         }
 
@@ -335,15 +338,17 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 dgvTabela.Columns[11].HeaderText = "Laudo";
                 dgvTabela.Columns[12].HeaderText = "Garantia";
                 
-                
 
-
-                cn.Close();
             }
 
             catch (Exception ex)
             {
                 MessageBox.Show("Problema no banco de dados!", "Atenção !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cn.Close();
+            }
+            finally
+            {
+
                 cn.Close();
             }
 
@@ -505,6 +510,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             if (txtCod.Text == "" && cbModelo.Text == "" && cbColor.Text == "" && txtDefeito.Text == "" && txtReparo.Text == "" && txtObs.Text == "")
             {
                 desativarCampos();
+                btnNew.Enabled = true;
             }
             else
             {
@@ -513,6 +519,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 if (menssagem == DialogResult.Yes)
                 {
                     desativarCampos();
+                    btnNew.Enabled = true;
                 }
 
             }
@@ -520,6 +527,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 cn.Open();
@@ -560,6 +568,10 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 else if (rbRIniciado.Checked)
                 {
                     status = rbRIniciado.Text;
+                }
+                else if (rbSucata.Checked)
+                {
+                    status = rbSucata.Text;
                 }
                 else
                 {
@@ -621,6 +633,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 desativarCampos();
                 loadDataBase2();
                 btnNew.Enabled = true;
+                cbSaida.Checked = false;
                 MessageBox.Show("Aparelho alterado com sucesso !", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
             }
@@ -658,7 +671,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 
                 btnNew.Enabled = true;
                 MessageBox.Show("Aparelho excluido com sucesso !", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadDataBase();
+                loadDataBase2();
             }
             catch (Exception ex)
             {
@@ -731,6 +744,10 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             else if (status == "Reparo Iniciado")
             {
                 rbRIniciado.Select();
+            }
+            else if (status == "Sucata")
+            {
+                rbSucata.Select();
             }
             else
             {
@@ -814,6 +831,30 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void rbSucata_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBuscar_Enter(object sender, EventArgs e)
+        {
+            /*habilitaCampos();
+            carregaDados();
+
+            btnNew.Enabled = false;
+            btnSave.Enabled = false;
+            btnAlterar.Enabled = true;
+            btnExcluir.Enabled = true;
+            btnCancel.Enabled = true;
+
+            txtSaida.Enabled = false;*/
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             
         }

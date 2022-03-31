@@ -20,7 +20,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void frmEmail_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void txtCod_TextChanged(object sender, EventArgs e)
@@ -50,7 +50,16 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            EmailEnviar();
+            if (txtRemetente.Text != "" && txtDestinatario.Text != "" && txtCc.Text != "" && txtAssunto.Text != "" && txtMensagem.Text != "")
+            {
+                EmailEnviar();
+
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos para enviar o email","Atenção",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            
         }
 
         private void EmailEnviar()
@@ -65,18 +74,20 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
                         smtp.Host = "smtp.gmail.com";
                         smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential(txtRemetente.Text, "rdosrvstrwbastng");
+                        //smtp.Credentials = new System.Net.NetworkCredential(txtRemetente.Text, "rdosrvstrwbastng"); //Meu Gmail
+                        smtp.Credentials = new System.Net.NetworkCredential(txtRemetente.Text, "Brmobile@2020"); //Gmail FIX
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
 
                         //Emais (Mensagem)
                         email.From = new MailAddress(txtRemetente.Text);
                         email.To.Add(txtDestinatario.Text);
-                        email.CC.Add("teste@gmail.com");
+                        email.CC.Add(txtCc.Text);
 
                         email.Subject = txtAssunto.Text;
-                        email.IsBodyHtml = false;
+                        email.IsBodyHtml = true;
                         email.Body = txtMensagem.Text;
+                       
 
                         // Anexo
                         if (txtAnexo.Text != "")
@@ -112,6 +123,29 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                     else
                         txtAnexo.Text = txtAnexo.Text + ";" + anexo.FileNames[i];
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAnexo.Checked)
+            {
+                txtAnexo.Enabled = true;
+            }
+            else
+            {
+                txtAnexo.Enabled = false;
+            }
+        }
+
+        private void cbEmailType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbEmailType.Text == "Manutenção")
+            {
+                txtRemetente.Text = "contato@fixmobile.com.br";
+                txtDestinatario.Text = "contato@fixmobile.com.br";
+                txtCc.Text = "andrbter@gmail.com";
+                txtAssunto.Text = "Manutenção do dia - " + DateTime.Now.ToString("d");
+            }
         }
     }
 }

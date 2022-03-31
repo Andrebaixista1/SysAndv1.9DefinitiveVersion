@@ -72,6 +72,7 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.dgvTabela = new System.Windows.Forms.DataGridView();
             this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.rbSucata = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             this.gbStatus.SuspendLayout();
             this.gbGarantia.SuspendLayout();
@@ -101,7 +102,7 @@
             // abrirPlanilhaToolStripMenuItem
             // 
             this.abrirPlanilhaToolStripMenuItem.Name = "abrirPlanilhaToolStripMenuItem";
-            this.abrirPlanilhaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abrirPlanilhaToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.abrirPlanilhaToolStripMenuItem.Text = "Enviar email";
             this.abrirPlanilhaToolStripMenuItem.Click += new System.EventHandler(this.abrirPlanilhaToolStripMenuItem_Click);
             // 
@@ -321,6 +322,7 @@
             // 
             // gbStatus
             // 
+            this.gbStatus.Controls.Add(this.rbSucata);
             this.gbStatus.Controls.Add(this.rbConcluido);
             this.gbStatus.Controls.Add(this.rbRIniciado);
             this.gbStatus.Controls.Add(this.rbAReparo);
@@ -331,7 +333,7 @@
             this.gbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.gbStatus.Location = new System.Drawing.Point(16, 129);
             this.gbStatus.Name = "gbStatus";
-            this.gbStatus.Size = new System.Drawing.Size(633, 65);
+            this.gbStatus.Size = new System.Drawing.Size(677, 65);
             this.gbStatus.TabIndex = 24;
             this.gbStatus.TabStop = false;
             this.gbStatus.Text = "Status";
@@ -625,24 +627,41 @@
             this.dgvTabela.AllowUserToAddRows = false;
             this.dgvTabela.AllowUserToDeleteRows = false;
             this.dgvTabela.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTabela.Location = new System.Drawing.Point(670, 70);
+            this.dgvTabela.Location = new System.Drawing.Point(699, 70);
             this.dgvTabela.Name = "dgvTabela";
             this.dgvTabela.ReadOnly = true;
             this.dgvTabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTabela.Size = new System.Drawing.Size(604, 546);
+            this.dgvTabela.Size = new System.Drawing.Size(575, 546);
             this.dgvTabela.TabIndex = 36;
             this.dgvTabela.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTabela_CellContentClick);
             this.dgvTabela.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTabela_MouseDoubleClick);
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(670, 41);
+            this.txtBuscar.Location = new System.Drawing.Point(699, 41);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(258, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(229, 20);
             this.txtBuscar.TabIndex = 37;
             this.txtBuscar.Text = "Procurar...";
             this.txtBuscar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtBuscar_MouseClick);
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            this.txtBuscar.Enter += new System.EventHandler(this.txtBuscar_Enter);
+            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
+            // 
+            // rbSucata
+            // 
+            this.rbSucata.AutoSize = true;
+            this.rbSucata.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbSucata.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.rbSucata.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.rbSucata.Location = new System.Drawing.Point(625, 22);
+            this.rbSucata.Name = "rbSucata";
+            this.rbSucata.Size = new System.Drawing.Size(45, 30);
+            this.rbSucata.TabIndex = 7;
+            this.rbSucata.TabStop = true;
+            this.rbSucata.Text = "Sucata";
+            this.rbSucata.UseVisualStyleBackColor = true;
+            this.rbSucata.CheckedChanged += new System.EventHandler(this.rbSucata_CheckedChanged);
             // 
             // frmInitial
             // 
@@ -745,6 +764,7 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.DataGridView dgvTabela;
         private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.RadioButton rbSucata;
     }
 }
 
