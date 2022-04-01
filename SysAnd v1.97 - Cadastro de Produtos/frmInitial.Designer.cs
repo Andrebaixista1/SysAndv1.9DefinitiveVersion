@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirPlanilhaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.txtReparo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.gbStatus = new System.Windows.Forms.GroupBox();
+            this.rbSucata = new System.Windows.Forms.RadioButton();
             this.rbConcluido = new System.Windows.Forms.RadioButton();
             this.rbRIniciado = new System.Windows.Forms.RadioButton();
             this.rbAReparo = new System.Windows.Forms.RadioButton();
@@ -72,7 +74,11 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.dgvTabela = new System.Windows.Forms.DataGridView();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.rbSucata = new System.Windows.Forms.RadioButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lblProgress = new System.Windows.Forms.Label();
+            this.lblAtualizacao = new System.Windows.Forms.Label();
+            this.lblLast = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.gbStatus.SuspendLayout();
             this.gbGarantia.SuspendLayout();
@@ -94,7 +100,8 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirPlanilhaToolStripMenuItem});
+            this.abrirPlanilhaToolStripMenuItem,
+            this.downloadToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -102,9 +109,16 @@
             // abrirPlanilhaToolStripMenuItem
             // 
             this.abrirPlanilhaToolStripMenuItem.Name = "abrirPlanilhaToolStripMenuItem";
-            this.abrirPlanilhaToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.abrirPlanilhaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.abrirPlanilhaToolStripMenuItem.Text = "Enviar email";
             this.abrirPlanilhaToolStripMenuItem.Click += new System.EventHandler(this.abrirPlanilhaToolStripMenuItem_Click);
+            // 
+            // downloadToolStripMenuItem
+            // 
+            this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
+            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downloadToolStripMenuItem.Text = "Download ";
+            this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -337,6 +351,20 @@
             this.gbStatus.TabIndex = 24;
             this.gbStatus.TabStop = false;
             this.gbStatus.Text = "Status";
+            // 
+            // rbSucata
+            // 
+            this.rbSucata.AutoSize = true;
+            this.rbSucata.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbSucata.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.rbSucata.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.rbSucata.Location = new System.Drawing.Point(625, 22);
+            this.rbSucata.Name = "rbSucata";
+            this.rbSucata.Size = new System.Drawing.Size(45, 30);
+            this.rbSucata.TabIndex = 7;
+            this.rbSucata.TabStop = true;
+            this.rbSucata.Text = "Sucata";
+            this.rbSucata.UseVisualStyleBackColor = true;
             // 
             // rbConcluido
             // 
@@ -631,9 +659,8 @@
             this.dgvTabela.Name = "dgvTabela";
             this.dgvTabela.ReadOnly = true;
             this.dgvTabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTabela.Size = new System.Drawing.Size(575, 546);
+            this.dgvTabela.Size = new System.Drawing.Size(575, 570);
             this.dgvTabela.TabIndex = 36;
-            this.dgvTabela.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTabela_CellContentClick);
             this.dgvTabela.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTabela_MouseDoubleClick);
             // 
             // txtBuscar
@@ -645,29 +672,59 @@
             this.txtBuscar.Text = "Procurar...";
             this.txtBuscar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtBuscar_MouseClick);
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-            this.txtBuscar.Enter += new System.EventHandler(this.txtBuscar_Enter);
-            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
             // 
-            // rbSucata
+            // backgroundWorker1
             // 
-            this.rbSucata.AutoSize = true;
-            this.rbSucata.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbSucata.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.rbSucata.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.rbSucata.Location = new System.Drawing.Point(625, 22);
-            this.rbSucata.Name = "rbSucata";
-            this.rbSucata.Size = new System.Drawing.Size(45, 30);
-            this.rbSucata.TabIndex = 7;
-            this.rbSucata.TabStop = true;
-            this.rbSucata.Text = "Sucata";
-            this.rbSucata.UseVisualStyleBackColor = true;
-            this.rbSucata.CheckedChanged += new System.EventHandler(this.rbSucata_CheckedChanged);
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(5, 623);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(118, 17);
+            this.progressBar1.TabIndex = 38;
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Location = new System.Drawing.Point(124, 625);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(71, 13);
+            this.lblProgress.TabIndex = 39;
+            this.lblProgress.Text = "Loading... 0%";
+            this.lblProgress.Visible = false;
+            // 
+            // lblAtualizacao
+            // 
+            this.lblAtualizacao.AutoSize = true;
+            this.lblAtualizacao.Location = new System.Drawing.Point(1066, 46);
+            this.lblAtualizacao.Name = "lblAtualizacao";
+            this.lblAtualizacao.Size = new System.Drawing.Size(94, 13);
+            this.lblAtualizacao.TabIndex = 40;
+            this.lblAtualizacao.Text = "Ultima Atualização";
+            // 
+            // lblLast
+            // 
+            this.lblLast.AutoSize = true;
+            this.lblLast.Location = new System.Drawing.Point(1163, 46);
+            this.lblLast.Name = "lblLast";
+            this.lblLast.Size = new System.Drawing.Size(13, 13);
+            this.lblLast.TabIndex = 41;
+            this.lblLast.Text = "0";
             // 
             // frmInitial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1274, 618);
+            this.ClientSize = new System.Drawing.Size(1274, 643);
+            this.Controls.Add(this.lblLast);
+            this.Controls.Add(this.lblAtualizacao);
+            this.Controls.Add(this.lblProgress);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.dgvTabela);
             this.Controls.Add(this.btnExcluir);
@@ -765,6 +822,12 @@
         private System.Windows.Forms.DataGridView dgvTabela;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.RadioButton rbSucata;
+        private System.Windows.Forms.ToolStripMenuItem downloadToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lblProgress;
+        private System.Windows.Forms.Label lblAtualizacao;
+        private System.Windows.Forms.Label lblLast;
     }
 }
 

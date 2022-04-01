@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,14 +16,14 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 {
     public partial class frmInitial : Form
     {
-       
+
         public frmInitial()
         {
             InitializeComponent();
-            
-        }
 
-        
+        }
+        Microsoft.Office.Interop.Excel.Application XcelApp = new Microsoft.Office.Interop.Excel.Application();
+
 
         private void desativarCampos()
         {
@@ -44,6 +45,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             txtDefeito.Text = "";
             txtReparo.Text = "";
             txtObs.Text = "";
+            lblLast.Text = "";
 
 
             //Desativar
@@ -64,7 +66,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             btnCancel.Enabled = false;
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
-           
+            
 
         }
 
@@ -79,6 +81,15 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             cbEntrada.Enabled = true;
             cbSaida.Enabled = true;
 
+            if (lblLast.Text != "")
+            {
+                lblAtualizacao.Visible = true;
+            }
+            else
+            {
+                lblAtualizacao.Visible = false;
+            }
+
             //Ativar
             txtOS.Enabled = true; txtOS.Text = "000000";
             txtCod.Enabled = true; txtCod.Text = "";
@@ -87,7 +98,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             txtDefeito.Enabled = true; txtDefeito.Text = "";
             txtReparo.Enabled = true; txtReparo.Text = "";
             txtObs.Enabled = true; txtObs.Text = "";
-            gbGarantia.Enabled = true; 
+            gbGarantia.Enabled = true;
             gbLaudo.Enabled = true;
             rbNaoG.Select();
             rbNaoL.Select();
@@ -95,7 +106,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             rbLaudo.Select();
             btnSave.Enabled = true;
             btnCancel.Enabled = true;
-            
+
 
 
         }
@@ -106,11 +117,11 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         private void saveInDataBase()
         {
 
-            
-           
 
-                try
-                {
+
+
+            try
+            {
 
                 string patrimonio = txtCod.Text;
                 string OS = txtOS.Text;
@@ -161,7 +172,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
                     DateTime saida = Convert.ToDateTime(txtSaida.Text);
 
-
+                    DateTime lastUp = DateTime.Now;
 
                     string status = string.Empty;
                     string laudo = string.Empty;
@@ -230,7 +241,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
 
 
-                    string sql = "insert into Fix_ManutencaoNew(entrada,os,patrimonio,modelo,cor,defeito,reparo,status_tb,obs,saida,laudo,garantia) values(@entrada,@os,@patrimonio,@modelo,@cor,@defeito,@reparo,@status,@obs,@saida,@laudo,@garantia)";
+                    string sql = "insert into Fix_ManutencaoNew(entrada,os,patrimonio,modelo,cor,defeito,reparo,status_tb,obs,saida,laudo,garantia,last_update) values(@entrada,@os,@patrimonio,@modelo,@cor,@defeito,@reparo,@status,@obs,@saida,@laudo,@garantia,@lastUp)";
                     SqlCommand cmd = new SqlCommand(sql, cn);
 
 
@@ -246,21 +257,22 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                     cmd.Parameters.Add("@saida", SqlDbType.DateTime).Value = saida;
                     cmd.Parameters.Add("@laudo", SqlDbType.Text).Value = laudo;
                     cmd.Parameters.Add("@garantia", SqlDbType.Text).Value = garantia;
+                    cmd.Parameters.Add("@lastUp", SqlDbType.DateTime).Value = lastUp;
 
                     cmd.ExecuteNonQuery(); //Executar sem consulta
 
                     MessageBox.Show("Aparelho cadastrado com sucesso !", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    cn.Close();
-                }
-            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
 
         }
 
@@ -292,17 +304,18 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 dgvTabela.Columns[10].HeaderText = "Saida";
                 dgvTabela.Columns[11].HeaderText = "Laudo";
                 dgvTabela.Columns[12].HeaderText = "Garantia";
+                dgvTabela.Columns[13].HeaderText = "Ultima Atualização";
 
-                
-               
+
+
             }
 
             catch (Exception ex)
             {
                 MessageBox.Show("Problema no banco de dados!", "Atenção !!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+
             }
-            
+
 
         }
 
@@ -337,7 +350,8 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 dgvTabela.Columns[10].HeaderText = "Saida";
                 dgvTabela.Columns[11].HeaderText = "Laudo";
                 dgvTabela.Columns[12].HeaderText = "Garantia";
-                
+                dgvTabela.Columns[13].HeaderText = "Ultima Atualização";
+
 
             }
 
@@ -357,7 +371,15 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         {
             desativarCampos();
             loadDataBase();
-            
+            if (lblLast.Text != "")
+            {
+                lblAtualizacao.Visible = true;
+            }
+            else
+            {
+                lblAtualizacao.Visible = false;
+            }
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -368,9 +390,9 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             }
             else
             {
-                txtData.Enabled= false;
+                txtData.Enabled = false;
             }
-            
+
         }
 
         private void textBox1_MouseClick(object sender, MouseEventArgs e)
@@ -380,22 +402,23 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void rbConcluido_CheckedChanged(object sender, EventArgs e)
         {
-           
-               
-            
-            
+
+
+
+
         }
 
         private void rbConcluido_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
         {
-            
+
             if (cbSaida.Checked)
             {
+                txtSaida.Text = DateTime.Now.ToString();
                 txtSaida.Enabled = true;
             }
             else
@@ -433,7 +456,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             }
             else
             {
-                var menssagem = MessageBox.Show("Deseja criar um novo registro? Se ja possuir dados preenchidos eles seram perdidos!","Atenção !",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                var menssagem = MessageBox.Show("Deseja criar um novo registro? Se ja possuir dados preenchidos eles seram perdidos!", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (menssagem == DialogResult.Yes)
                 {
@@ -442,7 +465,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
             }
 
-            
+
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
@@ -468,7 +491,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             frmEmail email = new frmEmail();
             email.ShowDialog();
 
-            
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -527,7 +550,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 cn.Open();
@@ -538,7 +561,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 string defeito = txtDefeito.Text;
                 string reparo = txtReparo.Text;
                 string OS = txtOS.Text;
-
+                DateTime lastUp = DateTime.Now;
                 // Radio Button
 
                 string status = string.Empty;
@@ -604,7 +627,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 DateTime saida = Convert.ToDateTime(txtSaida.Text.ToString());
 
 
-                string sql = "UPDATE Fix_ManutencaoNew set patrimonio=@patrimonio, OS=@os,modelo=@modelo, cor=@cor, defeito=@defeito, reparo=@reparo, status_tb=@status, obs=@obs, saida=@saida, laudo=@laudo, garantia=@garantia WHERE id=@id";
+                string sql = "UPDATE Fix_ManutencaoNew set patrimonio=@patrimonio, OS=@os,modelo=@modelo, cor=@cor, defeito=@defeito, reparo=@reparo, status_tb=@status, obs=@obs, saida=@saida, laudo=@laudo, garantia=@garantia, last_update=@lastUp WHERE id=@id";
 
 
                 SqlCommand cmd = new SqlCommand(sql, cn);
@@ -622,12 +645,12 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 cmd.Parameters.Add("@saida", SqlDbType.DateTime).Value = saida;
                 cmd.Parameters.Add("@laudo", SqlDbType.VarChar).Value = laudo;
                 cmd.Parameters.Add("@garantia", SqlDbType.VarChar).Value = garantia;
+                cmd.Parameters.Add("@lastUp", SqlDbType.VarChar).Value = lastUp;
 
 
 
 
 
-               
                 cmd.ExecuteNonQuery(); //Executar sem consulta
                 cmd.Parameters.Clear(); //Limpa os parâmetros após usado
                 desativarCampos();
@@ -635,7 +658,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 btnNew.Enabled = true;
                 cbSaida.Checked = false;
                 MessageBox.Show("Aparelho alterado com sucesso !", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
             }
             catch (Exception ex)
             {
@@ -650,38 +673,48 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            try
+            var msg = MessageBox.Show("Deseja realmente excluir esse item ? (todas as informações relacionadas a ele será excluida permanentemente)", "Atenção !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (msg == DialogResult.Yes)
             {
+                try
+                {
 
-                cn.Open();
-                int id = Convert.ToInt32(txtID.Text);
+                    cn.Open();
+                    int id = Convert.ToInt32(txtID.Text);
 
-                string sql = "DELETE FROM Fix_ManutencaoNew WHERE id=@id";
-
-
-                SqlCommand cmd = new SqlCommand(sql, cn);
-
-                cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    string sql = "DELETE FROM Fix_ManutencaoNew WHERE id=@id";
 
 
-                
-                cmd.ExecuteNonQuery(); //Executar sem consulta
-                cmd.Parameters.Clear(); //Limpa os parâmetros após usado
-                habilitaCampos();
-                
-                btnNew.Enabled = true;
-                MessageBox.Show("Aparelho excluido com sucesso !", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadDataBase2();
+                    SqlCommand cmd = new SqlCommand(sql, cn);
+
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+
+
+                    cmd.ExecuteNonQuery(); //Executar sem consulta
+                    cmd.Parameters.Clear(); //Limpa os parâmetros após usado
+                    habilitaCampos();
+
+                    btnNew.Enabled = true;
+                    MessageBox.Show("Aparelho excluido com sucesso !", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadDataBase2();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    cn.Close();
+                }
+                finally
+                {
+                    cn.Close();
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-                cn.Close();
+                MessageBox.Show("Nenhum registro foi excluido fique tranquilo","Operação cancelada !",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
-            finally
-            {
-                cn.Close();
-            }
+
+            
         }
 
         private void txtBuscar_MouseClick(object sender, MouseEventArgs e)
@@ -699,7 +732,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             btnAlterar.Enabled = true;
             btnExcluir.Enabled = true;
             btnCancel.Enabled = true;
-            
+
             txtSaida.Enabled = false;
         }
 
@@ -714,6 +747,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             txtDefeito.Text = dgvTabela.SelectedRows[0].Cells[6].Value.ToString();
             txtReparo.Text = dgvTabela.SelectedRows[0].Cells[7].Value.ToString();
             txtObs.Text = dgvTabela.SelectedRows[0].Cells[9].Value.ToString();
+            lblLast.Text = dgvTabela.SelectedRows[0].Cells[13].Value.ToString();
 
             cbSaida.Select();
             txtSaida.Text = dgvTabela.SelectedRows[0].Cells[10].Value.ToString();
@@ -775,7 +809,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             {
                 rbNaoG.Select();
             }
-            
+
 
         }
 
@@ -786,9 +820,9 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             {
                 try
                 {
-                    
+
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "select * from Fix_ManutencaoNew where patrimonio like ('" + txtBuscar.Text + "%') or modelo like ('%" + txtBuscar.Text + "%') or status_tb like ('" + txtBuscar.Text + "%') or os like ('" + txtBuscar.Text + "%')or reparo like ('" + txtBuscar.Text + "%') or cor like ('" + txtBuscar.Text + "%')";
+                    cmd.CommandText = "select * from Fix_ManutencaoNew where patrimonio like ('%" + txtBuscar.Text + "%') or modelo like ('%" + txtBuscar.Text + "%') or status_tb like ('" + txtBuscar.Text + "%') or os like ('%" + txtBuscar.Text + "%')or reparo like ('" + txtBuscar.Text + "%') or cor like ('" + txtBuscar.Text + "%')";
                     cmd.Connection = cn;
 
                     SqlDataAdapter adp = new SqlDataAdapter(cmd); // recebe os dados de uma tabela depois da execução de um Select
@@ -798,7 +832,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                     adp.Fill(dt); //preenchendo o DataTable
 
                     dgvTabela.DataSource = dt; //Tabela que será preenchida
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -825,38 +859,107 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             cn.Close();
         }
 
-        private void dgvTabela_CellContentClick(object sender, DataGridViewCellEventArgs e)
+       
+        private void openToExcel()
         {
+            if (dgvTabela.Rows.Count > 0)
+            {
+                try
+                {
+                    XcelApp.Application.Workbooks.Add(Type.Missing);
 
+                    for (int i = 1; i < dgvTabela.Columns.Count + 1; i++)
+                    {
+                        XcelApp.Cells[1, i] = dgvTabela.Columns[i - 1].HeaderText;
+                    }
+
+                    for (int i = 0; i < dgvTabela.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < dgvTabela.Columns.Count; j++)
+                        {
+                            XcelApp.Cells[i + 2, j + 1] = dgvTabela.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+                    XcelApp.Columns.AutoFit();
+                    XcelApp.Visible = true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex.Message);
+                    XcelApp.Quit();
+                }
+            }
+            /*MessageBox.Show("Carregamento completo !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);*/
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        struct DataParameter
         {
+            public int Process;
+            public int Delay;
+        }
+        private DataParameter _inputparameter;
+        private void downloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lblProgress.Visible = true;
+            if (!backgroundWorker1.IsBusy)
+            {
+                _inputparameter.Delay = 100;
+                _inputparameter.Process = 150;
+                backgroundWorker1.RunWorkerAsync(_inputparameter);
+            }
             
         }
 
-        private void rbSucata_CheckedChanged(object sender, EventArgs e)
+        private void statusBar_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void txtBuscar_Enter(object sender, EventArgs e)
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            /*habilitaCampos();
-            carregaDados();
-
-            btnNew.Enabled = false;
-            btnSave.Enabled = false;
-            btnAlterar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnCancel.Enabled = true;
-
-            txtSaida.Enabled = false;*/
+            var msg = MessageBox.Show("Carregamento concluído !","Atenção",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            if (msg == DialogResult.OK)
+            {
+                backgroundWorker1.CancelAsync();
+                progressBar1.Value = 0;
+                lblProgress.Visible = false;
+            }
+            frmInitial menu = new frmInitial();
+            this.BringToFront();
         }
 
-        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            
+            progressBar1.Value = e.ProgressPercentage;
+            lblProgress.Text = String.Format("Loading... {0}%", e.ProgressPercentage);
+            progressBar1.Update();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int process = ((DataParameter)e.Argument).Process;
+            int delay = ((DataParameter)e.Argument).Delay;
+            int index = 1;
+            try
+            {
+                for (int i = 0; i < process; i++)
+                {
+                    if (!backgroundWorker1.CancellationPending)
+                    {
+                        backgroundWorker1.ReportProgress(index++ * 100 / process, string.Format("Process data {0}", i));
+                        Thread.Sleep(delay);
+                        
+                    }
+                }
+                openToExcel();
+            }
+            catch (Exception ex)
+            {
+                backgroundWorker1.CancelAsync();
+                MessageBox.Show(ex.Message);
+            }
         }
     }
-}
+    }
+
