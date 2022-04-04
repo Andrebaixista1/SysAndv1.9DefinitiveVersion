@@ -901,11 +901,12 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         private DataParameter _inputparameter;
         private void downloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtBuscar.Text = "";
             lblProgress.Visible = true;
             if (!backgroundWorker1.IsBusy)
             {
                 _inputparameter.Delay = 100;
-                _inputparameter.Process = 150;
+                _inputparameter.Process = 100;
                 backgroundWorker1.RunWorkerAsync(_inputparameter);
             }
             
@@ -959,6 +960,74 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 backgroundWorker1.CancelAsync();
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void filtrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBancoDeDados dbTable = new frmBancoDeDados();
+            dbTable.Show();
+        }
+
+        private void frmInitial_Deactivate(object sender, EventArgs e)
+        {
+            
+        }
+        private void registraSaida()
+        {
+            try
+            {
+
+                cn.Open();
+                SqlCommand cm = new SqlCommand();
+
+
+
+
+                cm.CommandText = "select * from marcaPonto";
+                cm.Connection = cn;
+
+                SqlDataAdapter adp = new SqlDataAdapter(cm); // recebe os dados de uma tabela depois da execução de um Select
+                DataTable dt = new DataTable(); // representa uma ou mais tabelas que permanecem alocadas em memória
+
+                adp.SelectCommand = cm; // recebendo os dados da instrução Select
+                adp.Fill(dt); //preenchendo o DataTable
+
+                
+                string saida = "Saida";
+                DateTime lastUp = DateTime.Now;
+
+
+                string sql = "insert into marcaPonto(ent_sai,registerHour) values(@saida,@lastUp)";
+                SqlCommand cmd = new SqlCommand(sql, cn);
+
+
+                
+                cmd.Parameters.Add("@saida", SqlDbType.VarChar).Value = saida;
+                cmd.Parameters.Add("lastUp", SqlDbType.DateTime).Value = lastUp;
+
+
+                cmd.ExecuteNonQuery(); //Executar sem consulta
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                cn.Close();
+            }
+            finally
+            {
+                DateTime saida = DateTime.Now;
+                MessageBox.Show("Horario de saida: " + saida,"Atenção !",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                cn.Close();
+            }
+        }
+
+        private void frmInitial_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            registraSaida();
+            this.Hide();
+            frmLogin login = new frmLogin();
+            login.ShowDialog();
         }
     }
     }

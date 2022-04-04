@@ -65,6 +65,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmBancoDeDados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBancoDeDados.Designer.cs">
+      <DependentUpon>frmBancoDeDados.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEmail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,12 @@
     <Compile Include="frmInitial.Designer.cs">
       <DependentUpon>frmInitial.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProgressDownload.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,11 +97,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmBancoDeDados.resx">
+      <DependentUpon>frmBancoDeDados.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEmail.resx">
       <DependentUpon>frmEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInitial.resx">
       <DependentUpon>frmInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProgressDownload.resx">
       <DependentUpon>frmProgressDownload.cs</DependentUpon>

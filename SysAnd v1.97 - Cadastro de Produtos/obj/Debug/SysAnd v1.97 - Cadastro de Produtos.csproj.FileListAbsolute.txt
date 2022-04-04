@@ -46,3 +46,5 @@ C:\dev\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\b
 C:\dev\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd v1.97 - Cadastro de Produtos.csproj.CopyComplete
 C:\dev\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\bin\Debug\Microsoft.VisualStudio.Interop.dll
 C:\dev\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd_v1._97___Cadastro_de_Produtos.frmProgressDownload.resources
+C:\dev\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd_v1._97___Cadastro_de_Produtos.frmBancoDeDados.resources
+C:\dev\SysAnd v1.97 - Cadastro de Produtos\SysAnd v1.97 - Cadastro de Produtos\obj\Debug\SysAnd_v1._97___Cadastro_de_Produtos.frmLogin.resources

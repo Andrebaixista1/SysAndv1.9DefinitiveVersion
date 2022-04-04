@@ -30,7 +30,6 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirPlanilhaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,11 +66,6 @@
             this.gbLaudo = new System.Windows.Forms.GroupBox();
             this.rbNaoL = new System.Windows.Forms.RadioButton();
             this.rbSimL = new System.Windows.Forms.RadioButton();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnAlterar = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
             this.dgvTabela = new System.Windows.Forms.DataGridView();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -79,6 +73,12 @@
             this.lblProgress = new System.Windows.Forms.Label();
             this.lblAtualizacao = new System.Windows.Forms.Label();
             this.lblLast = new System.Windows.Forms.Label();
+            this.filtrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.gbStatus.SuspendLayout();
             this.gbGarantia.SuspendLayout();
@@ -100,24 +100,17 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.abrirPlanilhaToolStripMenuItem,
-            this.downloadToolStripMenuItem});
+            this.downloadToolStripMenuItem,
+            this.filtrarToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
-            // abrirPlanilhaToolStripMenuItem
-            // 
-            this.abrirPlanilhaToolStripMenuItem.Name = "abrirPlanilhaToolStripMenuItem";
-            this.abrirPlanilhaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.abrirPlanilhaToolStripMenuItem.Text = "Enviar email";
-            this.abrirPlanilhaToolStripMenuItem.Click += new System.EventHandler(this.abrirPlanilhaToolStripMenuItem_Click);
-            // 
             // downloadToolStripMenuItem
             // 
             this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
-            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.downloadToolStripMenuItem.Text = "Download ";
+            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.downloadToolStripMenuItem.Text = "Abrir Excel";
             this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
             // 
             // label1
@@ -580,6 +573,79 @@
             this.rbSimL.Text = "Sim";
             this.rbSimL.UseVisualStyleBackColor = true;
             // 
+            // dgvTabela
+            // 
+            this.dgvTabela.AllowUserToAddRows = false;
+            this.dgvTabela.AllowUserToDeleteRows = false;
+            this.dgvTabela.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTabela.Location = new System.Drawing.Point(699, 70);
+            this.dgvTabela.Name = "dgvTabela";
+            this.dgvTabela.ReadOnly = true;
+            this.dgvTabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTabela.Size = new System.Drawing.Size(575, 570);
+            this.dgvTabela.TabIndex = 36;
+            this.dgvTabela.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTabela_MouseDoubleClick);
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(699, 41);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(229, 20);
+            this.txtBuscar.TabIndex = 37;
+            this.txtBuscar.Text = "Procurar...";
+            this.txtBuscar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtBuscar_MouseClick);
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(5, 623);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(118, 17);
+            this.progressBar1.TabIndex = 38;
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Location = new System.Drawing.Point(124, 625);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(71, 13);
+            this.lblProgress.TabIndex = 39;
+            this.lblProgress.Text = "Loading... 0%";
+            this.lblProgress.Visible = false;
+            // 
+            // lblAtualizacao
+            // 
+            this.lblAtualizacao.AutoSize = true;
+            this.lblAtualizacao.Location = new System.Drawing.Point(1066, 46);
+            this.lblAtualizacao.Name = "lblAtualizacao";
+            this.lblAtualizacao.Size = new System.Drawing.Size(94, 13);
+            this.lblAtualizacao.TabIndex = 40;
+            this.lblAtualizacao.Text = "Ultima Atualização";
+            // 
+            // lblLast
+            // 
+            this.lblLast.AutoSize = true;
+            this.lblLast.Location = new System.Drawing.Point(1163, 46);
+            this.lblLast.Name = "lblLast";
+            this.lblLast.Size = new System.Drawing.Size(13, 13);
+            this.lblLast.TabIndex = 41;
+            this.lblLast.Text = "0";
+            // 
+            // filtrarToolStripMenuItem
+            // 
+            this.filtrarToolStripMenuItem.Name = "filtrarToolStripMenuItem";
+            this.filtrarToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.filtrarToolStripMenuItem.Text = "Banco de Dados";
+            this.filtrarToolStripMenuItem.Click += new System.EventHandler(this.filtrarToolStripMenuItem_Click);
+            // 
             // btnExcluir
             // 
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -650,72 +716,6 @@
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // dgvTabela
-            // 
-            this.dgvTabela.AllowUserToAddRows = false;
-            this.dgvTabela.AllowUserToDeleteRows = false;
-            this.dgvTabela.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTabela.Location = new System.Drawing.Point(699, 70);
-            this.dgvTabela.Name = "dgvTabela";
-            this.dgvTabela.ReadOnly = true;
-            this.dgvTabela.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTabela.Size = new System.Drawing.Size(575, 570);
-            this.dgvTabela.TabIndex = 36;
-            this.dgvTabela.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvTabela_MouseDoubleClick);
-            // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Location = new System.Drawing.Point(699, 41);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(229, 20);
-            this.txtBuscar.TabIndex = 37;
-            this.txtBuscar.Text = "Procurar...";
-            this.txtBuscar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtBuscar_MouseClick);
-            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(5, 623);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(118, 17);
-            this.progressBar1.TabIndex = 38;
-            // 
-            // lblProgress
-            // 
-            this.lblProgress.AutoSize = true;
-            this.lblProgress.Location = new System.Drawing.Point(124, 625);
-            this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(71, 13);
-            this.lblProgress.TabIndex = 39;
-            this.lblProgress.Text = "Loading... 0%";
-            this.lblProgress.Visible = false;
-            // 
-            // lblAtualizacao
-            // 
-            this.lblAtualizacao.AutoSize = true;
-            this.lblAtualizacao.Location = new System.Drawing.Point(1066, 46);
-            this.lblAtualizacao.Name = "lblAtualizacao";
-            this.lblAtualizacao.Size = new System.Drawing.Size(94, 13);
-            this.lblAtualizacao.TabIndex = 40;
-            this.lblAtualizacao.Text = "Ultima Atualização";
-            // 
-            // lblLast
-            // 
-            this.lblLast.AutoSize = true;
-            this.lblLast.Location = new System.Drawing.Point(1163, 46);
-            this.lblLast.Name = "lblLast";
-            this.lblLast.Size = new System.Drawing.Size(13, 13);
-            this.lblLast.TabIndex = 41;
-            this.lblLast.Text = "0";
-            // 
             // frmInitial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -756,10 +756,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.HelpButton = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmInitial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SysAnd v1.97 - Cadastro de Produtos";
+            this.Deactivate += new System.EventHandler(this.frmInitial_Deactivate);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmInitial_FormClosed);
             this.Load += new System.EventHandler(this.frmInitial_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -813,7 +816,6 @@
         private System.Windows.Forms.GroupBox gbLaudo;
         private System.Windows.Forms.RadioButton rbNaoL;
         private System.Windows.Forms.RadioButton rbSimL;
-        private System.Windows.Forms.ToolStripMenuItem abrirPlanilhaToolStripMenuItem;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
@@ -828,6 +830,7 @@
         private System.Windows.Forms.Label lblProgress;
         private System.Windows.Forms.Label lblAtualizacao;
         private System.Windows.Forms.Label lblLast;
+        private System.Windows.Forms.ToolStripMenuItem filtrarToolStripMenuItem;
     }
 }
 

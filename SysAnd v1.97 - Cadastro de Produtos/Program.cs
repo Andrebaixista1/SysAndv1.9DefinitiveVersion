@@ -16,7 +16,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmInitial());
+            Application.Run(new frmLogin());
         }
     }
 }
