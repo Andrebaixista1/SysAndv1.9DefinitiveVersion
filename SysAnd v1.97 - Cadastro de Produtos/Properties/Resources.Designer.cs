@@ -73,6 +73,16 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_adicionar_usuário_masculino_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-adicionar-usuário-masculino-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_anexo_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-anexo-30", resourceCulture);
@@ -113,6 +123,16 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_banco_de_dados_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-banco-de-dados-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_cancelar_2_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancelar-2-25", resourceCulture);
@@ -136,6 +156,26 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos.Properties {
         internal static System.Drawing.Bitmap icons8_cancelar_48__1_ {
             get {
                 object obj = ResourceManager.GetObject("icons8-cancelar-48 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_microsoft_excel_2019_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-microsoft-excel-2019-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_mostrar_a_senha_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-mostrar-a-senha-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +236,26 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos.Properties {
         internal static System.Drawing.Bitmap icons8_salvar_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-salvar-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_senha_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-senha-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_usuário_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-usuário-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

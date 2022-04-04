@@ -30,7 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.novoUsuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,12 +74,13 @@
             this.lblProgress = new System.Windows.Forms.Label();
             this.lblAtualizacao = new System.Windows.Forms.Label();
             this.lblLast = new System.Windows.Forms.Label();
-            this.filtrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filtrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gbStatus.SuspendLayout();
             this.gbGarantia.SuspendLayout();
@@ -89,7 +91,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.usuárioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1274, 24);
@@ -106,12 +109,21 @@
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
-            // downloadToolStripMenuItem
+            // usuárioToolStripMenuItem
             // 
-            this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
-            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.downloadToolStripMenuItem.Text = "Abrir Excel";
-            this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
+            this.usuárioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.novoUsuárioToolStripMenuItem});
+            this.usuárioToolStripMenuItem.Name = "usuárioToolStripMenuItem";
+            this.usuárioToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.usuárioToolStripMenuItem.Text = "Usuário";
+            // 
+            // novoUsuárioToolStripMenuItem
+            // 
+            this.novoUsuárioToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_adicionar_usuário_masculino_32;
+            this.novoUsuárioToolStripMenuItem.Name = "novoUsuárioToolStripMenuItem";
+            this.novoUsuárioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novoUsuárioToolStripMenuItem.Text = "Novo Usuário";
+            this.novoUsuárioToolStripMenuItem.Click += new System.EventHandler(this.novoUsuárioToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -187,7 +199,7 @@
             // 
             // txtData
             // 
-            this.txtData.Location = new System.Drawing.Point(996, 2);
+            this.txtData.Location = new System.Drawing.Point(955, 2);
             this.txtData.Mask = "00/00/0000 00:00:00";
             this.txtData.Name = "txtData";
             this.txtData.Size = new System.Drawing.Size(119, 20);
@@ -198,7 +210,7 @@
             // 
             this.cbEntrada.AutoSize = true;
             this.cbEntrada.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cbEntrada.Location = new System.Drawing.Point(931, 4);
+            this.cbEntrada.Location = new System.Drawing.Point(890, 4);
             this.cbEntrada.Name = "cbEntrada";
             this.cbEntrada.Size = new System.Drawing.Size(63, 17);
             this.cbEntrada.TabIndex = 16;
@@ -482,10 +494,10 @@
             // txtSaida
             // 
             this.txtSaida.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtSaida.Location = new System.Drawing.Point(1184, 1);
-            this.txtSaida.Mask = "00/00/0000";
+            this.txtSaida.Location = new System.Drawing.Point(1143, 1);
+            this.txtSaida.Mask = "00/00/0000 00:00:00";
             this.txtSaida.Name = "txtSaida";
-            this.txtSaida.Size = new System.Drawing.Size(78, 23);
+            this.txtSaida.Size = new System.Drawing.Size(119, 23);
             this.txtSaida.TabIndex = 27;
             this.txtSaida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -493,7 +505,7 @@
             // 
             this.cbSaida.AutoSize = true;
             this.cbSaida.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cbSaida.Location = new System.Drawing.Point(1131, 5);
+            this.cbSaida.Location = new System.Drawing.Point(1090, 5);
             this.cbSaida.Name = "cbSaida";
             this.cbSaida.Size = new System.Drawing.Size(53, 17);
             this.cbSaida.TabIndex = 28;
@@ -577,6 +589,7 @@
             // 
             this.dgvTabela.AllowUserToAddRows = false;
             this.dgvTabela.AllowUserToDeleteRows = false;
+            this.dgvTabela.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvTabela.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTabela.Location = new System.Drawing.Point(699, 70);
             this.dgvTabela.Name = "dgvTabela";
@@ -638,13 +651,6 @@
             this.lblLast.Size = new System.Drawing.Size(13, 13);
             this.lblLast.TabIndex = 41;
             this.lblLast.Text = "0";
-            // 
-            // filtrarToolStripMenuItem
-            // 
-            this.filtrarToolStripMenuItem.Name = "filtrarToolStripMenuItem";
-            this.filtrarToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.filtrarToolStripMenuItem.Text = "Banco de Dados";
-            this.filtrarToolStripMenuItem.Click += new System.EventHandler(this.filtrarToolStripMenuItem_Click);
             // 
             // btnExcluir
             // 
@@ -715,6 +721,22 @@
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // downloadToolStripMenuItem
+            // 
+            this.downloadToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_microsoft_excel_2019_32;
+            this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
+            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downloadToolStripMenuItem.Text = "Abrir Excel";
+            this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
+            // 
+            // filtrarToolStripMenuItem
+            // 
+            this.filtrarToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_banco_de_dados_32;
+            this.filtrarToolStripMenuItem.Name = "filtrarToolStripMenuItem";
+            this.filtrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.filtrarToolStripMenuItem.Text = "Banco de Dados";
+            this.filtrarToolStripMenuItem.Click += new System.EventHandler(this.filtrarToolStripMenuItem_Click);
             // 
             // frmInitial
             // 
@@ -831,6 +853,8 @@
         private System.Windows.Forms.Label lblAtualizacao;
         private System.Windows.Forms.Label lblLast;
         private System.Windows.Forms.ToolStripMenuItem filtrarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usuárioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem novoUsuárioToolStripMenuItem;
     }
 }
 

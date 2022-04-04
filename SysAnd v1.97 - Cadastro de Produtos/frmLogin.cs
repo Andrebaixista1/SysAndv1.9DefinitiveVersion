@@ -23,8 +23,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         SqlDataReader dt;
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            
-            
+            btnShow.Visible = false;          
             
             
 
@@ -137,6 +136,8 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
                     cmd.ExecuteNonQuery(); //Executar sem consulta
 
+                MessageBox.Show("Horario de entrada: " + lastUp, "Atenção !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (Exception ex)
             {
@@ -160,7 +161,34 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            MessageBox.Show("Encerrando seu ponto!","Finaliza Ponto",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            Application.Exit();          
+
+        }
+
+        private void btnCriar_Click(object sender, EventArgs e)
+        {
+            frmNewLogin novo = new frmNewLogin();
+            novo.ShowDialog();
+        }
+
+        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnShow.Visible = true;
+            txtSenha.UseSystemPasswordChar = false;
+
+        }
+
+        private void btnSenha_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSenha_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnShow.Visible=false;
+            txtSenha.UseSystemPasswordChar = true;
+
         }
     }
 }

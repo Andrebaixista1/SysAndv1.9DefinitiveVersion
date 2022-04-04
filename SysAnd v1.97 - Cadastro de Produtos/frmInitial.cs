@@ -1029,6 +1029,12 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             frmLogin login = new frmLogin();
             login.ShowDialog();
         }
+
+        private void novoUsuárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNewLogin nLogin = new frmNewLogin();
+            nLogin.ShowDialog();
+        }
     }
     }
 

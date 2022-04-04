@@ -69,6 +69,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         private void frmBancoDeDados_Load(object sender, EventArgs e)
         {
             loadDataBase();
+           
             cbFiltro.Sorted = true;
             
             loadNumbers();
@@ -180,6 +181,14 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void cbFiltro_TextChanged(object sender, EventArgs e)
         {
+            if (cbFiltro.Text == "")
+            {
+                btnExcel.Enabled = false;
+            }
+            else
+            {
+                btnExcel.Enabled = true;
+            }
             tableFilter();
         }
 
@@ -190,6 +199,9 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void cbFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnExcel.Enabled = true;
+            
+                btnExcel.Enabled = true;
+            
+
         }
     } }

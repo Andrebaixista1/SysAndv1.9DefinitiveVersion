@@ -54,7 +54,7 @@
             this.dgvContagem.AllowUserToAddRows = false;
             this.dgvContagem.AllowUserToDeleteRows = false;
             this.dgvContagem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvContagem.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvContagem.BackgroundColor = System.Drawing.SystemColors.Menu;
             this.dgvContagem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvContagem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvContagem.Location = new System.Drawing.Point(12, 12);
@@ -88,11 +88,13 @@
             // 
             this.btnExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExcel.Enabled = false;
-            this.btnExcel.Location = new System.Drawing.Point(440, 130);
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnExcel.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_microsoft_excel_2019_32;
+            this.btnExcel.Location = new System.Drawing.Point(440, 126);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(93, 23);
+            this.btnExcel.Size = new System.Drawing.Size(37, 31);
             this.btnExcel.TabIndex = 3;
-            this.btnExcel.Text = "Abrir no Excel";
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -100,6 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1488, 831);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.cbFiltro);

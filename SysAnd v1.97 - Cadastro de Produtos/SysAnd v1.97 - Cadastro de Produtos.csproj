@@ -89,6 +89,12 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNewLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewLogin.Designer.cs">
+      <DependentUpon>frmNewLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProgressDownload.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewLogin.resx">
+      <DependentUpon>frmNewLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProgressDownload.resx">
       <DependentUpon>frmProgressDownload.cs</DependentUpon>
@@ -200,6 +209,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\assEmail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-microsoft-excel-2019-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-banco-de-dados-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-adicionar-usuário-masculino-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-mostrar-a-senha-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-senha-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-usuário-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
