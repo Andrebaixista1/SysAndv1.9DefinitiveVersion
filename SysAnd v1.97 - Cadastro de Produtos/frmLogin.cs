@@ -150,7 +150,18 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            loginValidate();
+            var msg = MessageBox.Show("Marcar entrada ?","Atenção",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (msg == DialogResult.Yes)
+            {
+                loginValidate();
+            }
+            else
+            {
+                this.Hide();
+                frmInitial registro = new frmInitial();
+                registro.Show();
+            }
+            
 
         }
 
@@ -161,7 +172,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MessageBox.Show("Encerrando seu ponto!","Finaliza Ponto",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            
             Application.Exit();          
 
         }

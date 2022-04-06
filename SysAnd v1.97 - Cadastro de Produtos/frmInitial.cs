@@ -30,9 +30,10 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             txtData.Text = DateTime.Now.ToString();
             txtData.Enabled = false;
             txtCod.Text.ToUpper();
+            txtID.Text = "00";
             rbLaudo.Select();
             txtSaida.Enabled = false;
-            txtSaida.Text = "01011999";
+            txtSaida.Text = "01011999 090000";
             cbEntrada.Enabled = false;
             cbSaida.Enabled = false;
 
@@ -77,7 +78,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             txtCod.Text.ToUpper();
             rbLaudo.Select();
             txtSaida.Enabled = false;
-            txtSaida.Text = "01011999";
+            txtSaida.Text = "01011999 090000";
             cbEntrada.Enabled = true;
             cbSaida.Enabled = true;
 
@@ -424,7 +425,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             else
             {
                 txtSaida.Enabled = false;
-                txtSaida.Text = "01011999";
+                txtSaida.Text = "01011999 090000";
             }
         }
 
@@ -526,6 +527,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
         {
             saveInDataBase();
             loadDataBase();
+            desativarCampos();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -668,6 +670,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             finally
             {
                 cn.Close();
+                desativarCampos();
             }
         }
 
@@ -698,6 +701,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                     btnNew.Enabled = true;
                     MessageBox.Show("Aparelho excluido com sucesso !", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadDataBase2();
+                    desativarCampos();
                 }
                 catch (Exception ex)
                 {
@@ -712,6 +716,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
             else
             {
                 MessageBox.Show("Nenhum registro foi excluido fique tranquilo","Operação cancelada !",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                desativarCampos();
             }
 
             
@@ -1024,10 +1029,27 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
 
         private void frmInitial_FormClosed(object sender, FormClosedEventArgs e)
         {
-            registraSaida();
-            this.Hide();
-            frmLogin login = new frmLogin();
-            login.ShowDialog();
+            var msg = MessageBox.Show("Deseja marcar o ponto de saida ?","Atenção !",MessageBoxButtons.YesNoCancel,MessageBoxIcon.Question);
+            if (msg == DialogResult.Yes)
+            {
+                registraSaida();
+                this.Hide();
+                frmLogin login = new frmLogin();
+                login.ShowDialog();
+            }
+            else if (msg == DialogResult.No)
+            {
+                this.Hide();
+                frmLogin login = new frmLogin();
+                login.ShowDialog();
+            }
+            else
+            {
+               frmInitial registro = new frmInitial();
+               registro.Show();
+               
+            }
+            
         }
 
         private void novoUsuárioToolStripMenuItem_Click(object sender, EventArgs e)

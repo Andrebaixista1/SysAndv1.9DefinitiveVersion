@@ -1,13 +1,21 @@
 use FixManutencaoDB
 select *
 from Fix_ManutencaoNew
+where saida like '%2022-04-05%'
 
+/*select *
+from marcaPonto
+select *
+from loginUser
+
+delete from marcaPonto */
+-----------------------------------------------
 /*APAGA TABELA*/
 /*
 DROP TABLE Fix_ManutencaoNew
 */
 
-
+-----------------------------------------------
 /*CRIAR UMA TABELA*/
 /*
 create table Fix_ManutencaoNew(
@@ -27,278 +35,44 @@ create table Fix_ManutencaoNew(
 )
 */
 
+-----------------------------------------------
 /*DELETA DADOS DA PLANILHA*/
-/*delete from Fix_ManutencaoNew*/
+/*delete from marcaPonto*/
 
-
+-----------------------------------------------
 /*APAGA COLUNA ESPECIFICA - PRIMEIRO VERIFIQUE SE NÃO É UM PK*/
 /*
 alter table Fix_ManutencaoNew
 drop column id
 */
+
+-----------------------------------------------
 /*ADICIONA UMA NOVA COLUNA*/
 /*
 alter table Fix_ManutencaoNew
 add last_update datetime;
 */
 
+-----------------------------------------------
+/*FILTRAR E CONTAR*/
+/*
+select status_tb, count(id) as Total
+from Fix_ManutencaoNew
+where status_tb != ''
+group by status_tb
+*/
+
+-----------------------------------------------
 /*ADICIONA DADOS AO BANCO DE DADOS*/
-
+/*
 insert into Fix_ManutencaoNew(entrada,os,patrimonio,modelo,cor,defeito,reparo,status_tb,obs,saida,laudo,garantia)
-values ('2021-03-11', '000000', 'IPA5139', 'iPad Air - 9.7" Wi-fi (A1475)', 'Branco', 'Bateria, Botão Home, Botão Silêncioso', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'Yes'),
-('2021-11-01', '000138', 'TAB2434', 'Galaxy TAB A - 10.5" (T590)', 'Preto', 'Não sobe dados', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000073', 'BRM8482', 'Moto E7 Plus (XT2081)', 'Azul', 'Slot SIM Card', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000012', 'BRM5558', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'CEL0064', 'Galaxy S7 (G930)', 'Preto', 'Display/Touch, Não Liga, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000113', 'BRM5536', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM3003', 'Galaxy S8 (G950)', 'Preto', 'Display Quebrado', '', 'Reparo Iniciado', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM5534', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM5235', 'Galaxy S20 (G980)', 'Prata', 'Botão Power', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM4028', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Reparo Iniciado', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM4015', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'TAB1981', 'Galaxy Tab Active 2 (T395)', 'Preto', 'Lente da Câmera Traseira Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM4019', 'Galaxy S8 (G950)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'TAB1426', 'Galaxy Tab A 10.1" (T510)', 'Preto', 'Display/Touch', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'TAB1989', 'Galaxy TAB A 8" (T290)', 'Preto', 'Slot SIM Card', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM4479', 'Galaxy S20 (G980)', 'Prata', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'TAB1187', 'Galaxy Tab A 9.7" (P555)', 'Cinza', 'Display/Touch', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'TAB1185', 'Galaxy Tab A 9.7" (P555)', 'Cinza', 'Display/Touch', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM5571', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000000', 'BRM1548', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000099', 'BRM4027', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000124', 'BRM3125', 'Galaxy Tab A6 7" (T280)', 'Marrom', 'Não sobe dados', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000122', 'BRM3155', 'Galaxy Tab A6 7" (T280)', 'Marrom', 'Não sobe dados', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000032', 'BRM3141', 'Galaxy Tab A6 7" (T280)', 'Marrom', 'Não sobe dados', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000125', 'TAB1936', 'Galaxy Tab A6 7" (T280)', 'Marrom', 'Não sobe dados', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-19', '000123', 'TAB2190', 'Galaxy Tab A6 7" (T280)', 'Marrom', 'Não sobe dados', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-23', '000143', 'BRM4919', 'Galaxy TAB A 8" (T290)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-11-24', '000000', 'TAB1752', 'Galaxy TAB A - 10.5" (T590)', 'Preto', 'Carcaça/Chassi Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-13', '000000', 'BRM2928', 'Galaxy S7 (G930)', 'Dourado', 'Display Manchado', '', 'Reparo Iniciado', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-13', '000000', 'BRM1632', 'Galaxy J5 Prime (G570)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-15', '000000', 'BRM5926', 'Moto G8 Play (XT2015)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-16', '000000', 'BRM1623', 'Galaxy J5 Prime (G570)', 'Preto', 'Display/Touch', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-21', '000000', 'BRM2386', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado, Tampa Traseira Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-21', '000000', 'BRM2835', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM2632', 'Moto G6 Play (XT1922)', 'Indigo', 'Bateria, Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM8034', 'Galaxy S10e (G970)', 'Azul', 'Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM2262', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Manchado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM2396', 'Moto G6 Play (XT1922)', 'Indigo', 'Botão Power, Carcaça/Chassi Avariada, Display Quebrado, Tampa Traseira Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM2655', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM2796', 'Moto G6 Play (XT1922)', 'Indigo', 'Bateria, Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM2816', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM5519', 'Galaxy S8 (G950)', 'Azul', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-22', '000000', 'BRM2781', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado, Lente da Câmera Traseira Avariada, Tampa Traseira Avariada', '', 'Sucata', '', '1990-01-01', 'Yes', 'Yes'),
-('2021-12-23', '000000', 'BRM2193', 'Galaxy J5 Prime (G570)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-27', '000000', 'IPA5113', 'iPad Air - 9.7" Wi-fi (A1475)', 'Branco', 'Não Liga', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2021-12-29', '000000', 'BRM2984', 'Galaxy S7 (G930)', 'Dourado', 'Carcaça/Chassi Avariada, Display Quebrado, Tampa Traseira Avariada', '', 'Reparo Iniciado', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-04', '000000', 'BRM2287', 'Galaxy J5 Prime (G570)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-05', '000000', 'BRM09052', 'Galaxy A03s (A037)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-07', '000000', 'BRM8898', 'Moto E6 Plus (XT2025)', 'Cinza Metálico', 'Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-07', '000000', 'BRM8496', 'Galaxy S7 (G930)', 'Dourado', 'Carcaça/Chassi Avariada, Display Quebrado, Tampa Traseira Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-07', '000000', 'BRM3077', 'Galaxy S6 (G920)', 'Preto', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-07', '000000', 'BRM6096', 'Moto G8 Play (XT2015)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega, Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-07', '000000', 'BRM2920', 'Galaxy S7 (G930)', 'Dourado', 'Display Quebrado, Não Liga', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-11', '000000', 'TAB2808', 'Galaxy Tab Active 2 (T395)', 'Preto', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-11', '000228', 'BRM2808', 'Galaxy Tab Active 2 (T395)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Reparo Iniciado', '', '1990-01-01', 'No', 'No'),
-('2022-01-12', '000239', 'BRM4536', 'Moto G6 Play (XT1922)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Concluído', '', '1990-01-01', 'Yes', 'Yes'),
-('2022-01-12', '000000', 'BRM4138', 'Moto G6 Play (XT1922)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega, Display Quebrado', '', 'Sucata', '', '1990-01-01', 'Yes', 'Yes'),
-('2022-01-12', '000000', 'BRM1544', 'Galaxy S8 (G950)', 'Prata', 'Tampa Traseira Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-12', '000229', 'BRM4029', 'Galaxy S8 (G950)', 'Preto', 'Pixel Morto, Tampa Traseira Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-12', '000000', 'BRM4534', 'Moto G6 Play (XT1922)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'Yes'),
-('2022-01-12', '000234', 'BRM5597', 'Galaxy S8 (G950)', 'Ametista', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-12', '000000', 'BRM5667', 'Moto G6 Play (XT1922)', 'Preto', 'Bateria', '', 'Sucata', '', '1990-01-01', 'Yes', 'Yes'),
-('2022-01-12', '000000', 'BRM5511', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Reparo Iniciado', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-12', '000000', 'BRM1546', 'Galaxy S8 (G950)', 'Prata', 'Botão Power, Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-13', '000000', 'BRM2406', 'Moto G5S Plus (XT1802)', 'Preto', 'Não Liga', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-13', '000000', 'IPA5642', 'iPad Air 2 - 9.7" 4G (A1396)', 'Branco', 'Bateria', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-13', '000000', 'BRM5504', 'Galaxy S7 (G930)', 'Dourado', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-13', '000000', 'TAB1206', 'Galaxy Tab A 9.7" (P555)', 'Cinza', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-13', '000000', 'TAB1085', 'Galaxy Tab A 9.7" (P555)', 'Cinza', 'Carcaça/Chassi Avariada, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-13', '000000', 'TAB1001', 'Galaxy Tab A 9.7" (P555)', 'Cinza', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-13', '000000', 'TAB1086', 'Galaxy Tab A 9.7" (P555)', 'Cinza', 'Display Riscado', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-17', '000000', 'BRM5859', 'Moto G8 Play (XT2015)', 'Preto', 'Bateria', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-17', '000000', 'BRM1902', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-17', '000000', 'BRM4282', 'Galaxy A10s (A107)', 'Preto', 'Reboot', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-19', '000000', 'BRM2859', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-19', '000000', 'BRM5660', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-19', '000000', 'BRM2812', 'Moto G6 Play (XT1922)', 'Indigo', 'Não Liga', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-19', '000000', 'BRM2769', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-20', '000000', 'BRM09731', 'Galaxy J7 Prime 2 (G611)', 'Preto', 'Display Manchado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-20', '000000', 'BRM2004', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Display Manchado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-20', '000000', 'BRM2067', 'Moto G5S Plus (XT1802)', 'Preto', 'Display/Touch, Não Liga', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-20', '000000', 'BRM2445', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-20', '000000', 'BRM1006', 'Galaxy S7 (G930)', 'Preto', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-24', '000000', 'BRM2586', 'Moto G5S Plus (XT1802)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-25', '000000', 'BRM8393', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-25', '000000', 'BRM1534', 'Galaxy J7 Metal (J710)', 'Marrom', 'Display/Touch', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-25', '000000', 'BRM1524', 'Galaxy J7 Metal (J710)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-25', '000000', 'BRM6040', 'Moto G8 Play (XT2015)', 'Preto', 'Bateria', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-27', '000000', 'BRM2390', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-27', '000000', 'BRM2246', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-27', '000000', 'BRM5657', 'Moto G6 Play (XT1922)', 'Indigo', 'Bateria', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-27', '000000', 'BRM4611', 'Moto G6 Play (XT1922)', 'Indigo', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-27', '000000', 'BRM5334', 'Galaxy A10s (A107)', 'Preto', 'Bateria', '', 'Concluído', '', '1990-01-01', 'Yes', 'Yes'),
-('2022-01-27', '000000', 'BRM7092', 'Galaxy A01 Core (A013)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-01-31', '000000', 'BRM1751', 'Galaxy J5 Pro (J530)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-01', '000000', 'BRM1599', 'Galaxy J5 Prime (G570)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-01', '000000', 'BRM2942', 'iPhone 8 (A1864)', 'Preto', 'Carcaça/Chassi Avariada', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-01', '000000', 'BRM2632', 'Moto G6 Play (XT1922)', 'Indigo', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-02', '000000', 'BRM6195', 'Galaxy A10s (A107)', 'Azul', 'Conector de Carga/Não Reconhece USB/Não carrega, Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-03', '000000', 'BRM5849', 'Moto G8 Play (XT2015)', 'Preto', 'Display Manchado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-03', '000000', 'BRM6781', 'Galaxy A10s (A107)', 'Azul', 'Display/Touch', '', 'Sucata', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-03', '000000', 'BRM4616', 'Galaxy A10s (A107)', 'Azul', 'Carcaça/Chassi Avariada, Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Sucata', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-04', '000000', 'BRM6322', 'Galaxy A01 Core (A013)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-04', '000000', 'BRM1765', 'Galaxy J5 Pro (J530)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-04', '000000', 'BRM2770', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-04', '000000', 'BRM7576', 'Galaxy A01 Core (A013)', 'Preto', 'Display Quebrado', '', 'Sucata', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-04', '000000', 'BRM2835', 'Moto G6 Play (XT1922)', 'Indigo', 'Display/Touch', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2882', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2856', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2773', 'Moto G6 Play (XT1922)', 'Indigo', 'Conector de Carga/Não Reconhece USB/Não carrega, Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2750', 'Moto G6 Play (XT1922)', 'Indigo', 'Conector de Carga/Não Reconhece USB/Não carrega, Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2762', 'Moto G6 Play (XT1922)', 'Indigo', 'Conector de Carga/Não Reconhece USB/Não carrega, Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2757', 'Moto G6 Play (XT1922)', 'Indigo', 'Conector de Carga/Não Reconhece USB/Não carrega, Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2843', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-07', '000000', 'BRM2649', 'Moto G6 Play (XT1922)', 'Indigo', 'Bateria, Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-08', '000000', 'TAB2935', 'Galaxy S7 (G930)', 'Preto', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-08', '000000', 'BRM2937', 'Galaxy S7 (G930)', 'Dourado', 'Alto Falante Auricular, Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-08', '000000', 'TAB0688', 'Galaxy TAB E - 9.6" (T561M)', 'Preto', 'Não Liga', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-09', '000000', 'BRM2482', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-09', '000000', 'BRM1926', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Display Quebrado, Slot SIM Card', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-09', '000000', 'OS000302', 'iPhone 6 (A1549)', 'Branco', 'Bateria, Conector de Carga/Não Reconhece USB/Não carrega', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-09', '000000', 'BRM1319', 'Galaxy J7 Prime (G610M)', 'Preto', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-09', '000000', 'BRM1867', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-09', '000000', 'BRM6322', 'Galaxy A01 Core (A013)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-11', '000000', 'BRM09295', 'iPhone 8 (A1864)', 'Preto', 'Tampa Traseira Avariada', '', 'Reparo Iniciado', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-11', '000000', '175592B', 'iPhone 7 (A1660)', 'Branco', 'Audio Codec, Bateria, Sensor Frontal', '', 'Sucata', '', '1990-01-01', 'Yes', 'Yes'),
-('2022-02-11', '000000', '213207', 'iPhone 11 Pro Max (A2218)', 'Prata', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'No', 'No'),
-('2022-02-11', '000000', '216364B', 'iPhone XS Max (A1921)', 'Dourado', 'Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'No', 'No'),
-('2022-02-11', '000000', '216552B', 'iPhone 7 (A1660)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'No', 'No'),
-('2022-02-11', '000000', '176805F', 'iPhone X (A1865)', 'Preto', 'Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'No', 'No'),
-('2022-02-14', '000000', 'BRM5551', 'Galaxy S8 (G950)', 'Prata', 'Display/Touch, Tampa Traseira Avariada', '', 'Reparo Iniciado', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-14', '000306', 'BRM5542', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-14', '000000', 'BRM3002', 'Galaxy S8 (G950)', 'Preto', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-15', '000000', 'BRM1938', 'Moto G5S Plus (XT1802)', 'Preto', 'Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-15', '000000', 'BRM1816', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-16', '000000', 'BRM2053', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-16', '000000', 'BRM2444', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-16', '000000', 'BRM2073', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-16', '000000', 'BRM2402', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-16', '000000', 'BRM2094', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'BRM1865', 'Moto G5S Plus (XT1802)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', '', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'BRM09009', 'Galaxy A03s (A037)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'Yes'),
-('2022-02-17', '000000', 'BRM4851', 'Moto E7 Plus (XT2081)', 'Azul', 'Carcaça/Chassi Avariada', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'TAB2669', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'BRM1802', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'BRM2009', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'BRM2052', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'BRM1932', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-17', '000000', 'BRM1936', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-18', '000000', 'BRM7354', 'Galaxy S7 Edge (G935)', 'Dourado', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-22', '000000', 'BRM6119', 'Moto E6 Plus (XT2025)', 'Azul', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-22', '000000', 'BRM6137', 'Moto E6 Plus (XT2025)', 'Azul', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-22', '000000', 'OS000326', 'iPhone 11 (A2111)', 'Vermelho', 'Alto Falante Auricular', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-23', '000000', 'BRM2095', 'Moto G5S Plus (XT1802)', 'Preto', 'Não Liga', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-24', '000000', 'BRM8016', 'Galaxy S10e (G970)', 'Azul', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-24', '000000', 'BRM6109', 'Moto E6 Plus (XT2025)', 'Azul', 'Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-25', '000000', 'IPA5134', 'iPad Air - 9.7" Wi-fi (A1475)', 'Preto', 'Botão Home', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-25', '000000', 'IPA5025', 'iPad Air - 9.7" Wi-fi (A1475)', 'Branco', 'Display/Touch', '', 'Aguardando Compra', '', '1990-01-01', 'No', 'No'),
-('2022-02-28', '000000', 'BRM2041', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM1924', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM2092', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Manchado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM6139', 'Moto E6 Plus (XT2025)', 'Azul', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM2072', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM1921', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM2014', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM2571', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Display Manchado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM2076', 'Moto G5S Plus (XT1802)', 'Prata', 'Carcaça/Chassi Avariada, Display/Touch', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM1929', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM1946', 'Moto G5S Plus (XT1802)', 'Preto', 'Lente da Câmera Traseira Avariada', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-02-28', '000000', 'BRM1827', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000344', 'BRM2456', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM2039', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM1941', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM2619', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000354', 'BRM1979', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Lente da Câmera Traseira Avariada', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM2403', 'Moto G5S Plus (XT1802)', 'Preto', 'Lente da Câmera Traseira Avariada', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM2071', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM1906', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM2054', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM2005', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM1822', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-02', '000000', 'BRM1853', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM7055', 'Galaxy A01 Core (A013)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1881', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1920', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1823', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1895', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM2439', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM4214', 'Galaxy A11 (A115)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1960', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1854', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM2122', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1842', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1916', 'Moto G5S Plus (XT1802)', 'Preto', 'Display/Touch, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM1804', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-03', '000000', 'BRM2418', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-04', '000000', 'BRM4512', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-04', '000000', 'BRM2612', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-04', '000000', 'BRM1943', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-04', '000000', 'BRM1873', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-04', '000000', 'BRM1214', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-04', '000000', 'BRM2008', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-04', '000000', 'BRM5689', 'Galaxy J5 Prime (G570)', 'Preto', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM7695', 'Moto G8 Play (XT2015)', 'Preto', 'Display Manchado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM6126', 'Moto E6 Plus (XT2025)', 'Vermelho', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM1810', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM4379', 'Moto G6 Play (XT1922)', 'Indigo', 'Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM2569', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM1809', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM1962', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000380', 'BRM2026', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-07', '000000', 'BRM2133', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM2408', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM1811', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM2583', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM4559', 'Moto G6 Play (XT1922)', 'Indigo', 'Bateria', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM2608', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM2485', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM2060', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Display Quebrado, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-08', '000000', 'BRM1858', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-09', '000000', 'BRM2007', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-09', '000000', 'BRM1939', 'Moto G5S Plus (XT1802)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-09', '000000', 'BRM6051', 'Moto G8 Play (XT2015)', 'Preto', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-09', '000000', 'BRM2249', 'Moto G6 Play (XT1922)', 'Indigo', 'Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-11', '000000', 'BRM5560', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-11', '000000', 'BRM4033', 'Galaxy S8 (G950)', 'Preto', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-11', '000000', 'BRM4017', 'Galaxy S8 (G950)', 'Preto', 'Bateria, Display Quebrado, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-14', '000000', 'BRM1988', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-14', '000000', 'BRM2116', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-14', '000411', 'BRM1213', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Carcaça/Chassi Avariada, Display Manchado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-14', '000000', 'BRM1220', 'Moto G5S Plus (XT1802)', 'Preto', 'Não Liga', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-15', '000000', 'TAB1588', 'Galaxy Tab A6 7" (T280)', 'Preto', 'Slot SIM Card', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-15', '000000', 'TAB1685', 'Galaxy Tab A6 7" (T280)', 'Preto', 'Botão Power', '', 'Validação Técnico', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-15', '000412', 'BRM1219', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-15', '000414', 'BRM4045', 'Galaxy S6 (G920)', 'Dourado', 'Bateria', '', 'Sucata', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-15', '000000', 'CEL0046', 'Galaxy S7 (G930)', 'Dourado', 'Display Quebrado', '', 'Aguardando Reparo', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-17', '000000', 'BRM5244', 'Galaxy A10s (A107)', 'Preto', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-17', '000000', 'BRM5627', 'Galaxy S8 (G950)', 'Prata', 'Display Quebrado', '', 'Concluído', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-18', '000424', 'BRM5587', 'Galaxy S7 (G930)', 'Dourado', 'Botão Home, Carcaça/Chassi Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-18', '000000', 'BRM8474', 'Moto E7 Plus (XT2081)', 'Azul', 'Slot SIM Card', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-21', '000426', 'BRM1384', 'Galaxy J7 Prime (G610M)', 'Preto', 'Display Quebrado', '', 'Sucata', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-22', '000427', 'BRM09131', 'Galaxy A02 (A022)', 'Preto', 'Conector de Carga/Não Reconhece USB/Não carrega', '', 'Aguardando Reparo', '', '1990-01-01', 'No', 'No'),
-('2022-03-22', '000428', 'BRM2057', 'Moto G5S Plus (XT1802)', 'Preto', 'Bateria', '', 'Aguardando Compra', '', '1990-01-01', 'No', 'No'),
-('2022-03-25', '000433', 'BRM6134', 'Moto E6 Plus (XT2025)', 'Vermelho', 'Display Quebrado', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-25', '000432', 'BRM5507', 'Galaxy S8 (G950)', 'Prata', 'Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-25', '000431', 'BRM4010', 'Galaxy S8 (G950)', 'Prata', 'Carcaça/Chassi Avariada, Tampa Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No'),
-('2022-03-25', '000430', 'BRM2472', 'Moto G5S Plus (XT1802)', 'Preto', 'Carcaça/Chassi Avariada, Lente da Câmera Traseira Avariada', '', 'Aguardando Compra', '', '1990-01-01', 'Yes', 'No')
+values 
 
-
-
-
+-----------------------------------------------
 /*ALTERA INFORMAÇÕES NO BANCO*/
 /*
 UPDATE Fix_ManutencaoNew SET laudo = 'Não' where laudo like 'No'
 UPDATE Fix_ManutencaoNew SET laudo = 'Sim' where laudo like 'Yes'
 UPDATE Fix_ManutencaoNew SET garantia = 'Sim' where garantia like 'Yes'
 UPDATE Fix_ManutencaoNew SET garantia = 'Não' where garantia like 'No'*/
+*/

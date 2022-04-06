@@ -30,6 +30,8 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filtrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novoUsuárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -79,8 +81,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
-            this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.filtrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.gbStatus.SuspendLayout();
             this.gbGarantia.SuspendLayout();
@@ -109,6 +109,22 @@
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
+            // downloadToolStripMenuItem
+            // 
+            this.downloadToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_microsoft_excel_2019_32;
+            this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
+            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.downloadToolStripMenuItem.Text = "Abrir Excel";
+            this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
+            // 
+            // filtrarToolStripMenuItem
+            // 
+            this.filtrarToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_banco_de_dados_32;
+            this.filtrarToolStripMenuItem.Name = "filtrarToolStripMenuItem";
+            this.filtrarToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.filtrarToolStripMenuItem.Text = "Banco de Dados";
+            this.filtrarToolStripMenuItem.Click += new System.EventHandler(this.filtrarToolStripMenuItem_Click);
+            // 
             // usuárioToolStripMenuItem
             // 
             this.usuárioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -121,7 +137,7 @@
             // 
             this.novoUsuárioToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_adicionar_usuário_masculino_32;
             this.novoUsuárioToolStripMenuItem.Name = "novoUsuárioToolStripMenuItem";
-            this.novoUsuárioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novoUsuárioToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.novoUsuárioToolStripMenuItem.Text = "Novo Usuário";
             this.novoUsuárioToolStripMenuItem.Click += new System.EventHandler(this.novoUsuárioToolStripMenuItem_Click);
             // 
@@ -231,6 +247,7 @@
             // 
             // txtCod
             // 
+            this.txtCod.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCod.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtCod.Location = new System.Drawing.Point(322, 41);
             this.txtCod.Name = "txtCod";
@@ -252,6 +269,7 @@
             "Galaxy J7 Metal (J710)",
             "Galaxy J7 Prime (G610M)",
             "Galaxy J7 Prime 2 (G611)",
+            "Galaxy S10 (G973)",
             "Galaxy S10e (G970)",
             "Galaxy S20 (G980)",
             "Galaxy S6 (G920)",
@@ -276,6 +294,7 @@
             "iPhone XS Max (A1921)",
             "Moto E6 Plus (XT2025)",
             "Moto E7 Plus (XT2081)",
+            "Moto G20 (XT2128)",
             "Moto G5S Plus (XT1802)",
             "Moto G6 Play (XT1922)",
             "Moto G8 Play (XT2015)"});
@@ -309,6 +328,7 @@
             // 
             // txtDefeito
             // 
+            this.txtDefeito.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDefeito.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtDefeito.Location = new System.Drawing.Point(24, 235);
             this.txtDefeito.Multiline = true;
@@ -320,6 +340,7 @@
             // 
             // txtReparo
             // 
+            this.txtReparo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtReparo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtReparo.Location = new System.Drawing.Point(342, 235);
             this.txtReparo.Multiline = true;
@@ -473,6 +494,7 @@
             // 
             // txtObs
             // 
+            this.txtObs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtObs.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.txtObs.Location = new System.Drawing.Point(46, 398);
             this.txtObs.Multiline = true;
@@ -721,22 +743,6 @@
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // downloadToolStripMenuItem
-            // 
-            this.downloadToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_microsoft_excel_2019_32;
-            this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
-            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.downloadToolStripMenuItem.Text = "Abrir Excel";
-            this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
-            // 
-            // filtrarToolStripMenuItem
-            // 
-            this.filtrarToolStripMenuItem.Image = global::SysAnd_v1._97___Cadastro_de_Produtos.Properties.Resources.icons8_banco_de_dados_32;
-            this.filtrarToolStripMenuItem.Name = "filtrarToolStripMenuItem";
-            this.filtrarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.filtrarToolStripMenuItem.Text = "Banco de Dados";
-            this.filtrarToolStripMenuItem.Click += new System.EventHandler(this.filtrarToolStripMenuItem_Click);
             // 
             // frmInitial
             // 

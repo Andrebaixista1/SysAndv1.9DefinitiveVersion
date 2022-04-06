@@ -190,6 +190,7 @@ namespace SysAnd_v1._97___Cadastro_de_Produtos
                 btnExcel.Enabled = true;
             }
             tableFilter();
+            loadNumbers();
         }
 
         private void button1_Click(object sender, EventArgs e)
